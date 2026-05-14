@@ -626,24 +626,79 @@
     .nav-links { display: none !important; }
     #hamburger-btn { display: flex !important; }
     
-    /* FULLSCREEN CATALOG CARDS */
+    /* FULLSCREEN CATALOG CARDS - MOBILE: foto protagonista, panel compacto abajo */
     .fullscreen-card {
-      padding: 1.5rem !important;
-      justify-content: center !important;
-      align-items: flex-end !important;
+      padding: 0 !important;
+      flex-direction: column !important;
+      justify-content: flex-end !important;
+      align-items: stretch !important;
     }
+    /* Overlay más oscuro en la parte baja para que el panel se lea bien */
     .fullscreen-card > div:first-of-type {
-      background: linear-gradient(to top, rgba(10,37,64,0.95) 0%, rgba(10,37,64,0.5) 50%, rgba(10,37,64,0) 100%) !important;
+      background: linear-gradient(
+        to top,
+        rgba(5,20,40,0.97) 0%,
+        rgba(5,20,40,0.7) 30%,
+        rgba(5,20,40,0.1) 65%,
+        rgba(5,20,40,0) 100%
+      ) !important;
     }
+    /* Panel compacto FIJADO AL FONDO con position absolute */
     .fullscreen-card .card-content {
-      margin-bottom: 2rem;
-      padding: 1.8rem !important;
-      width: 100%;
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      top: auto !important;
+      margin: 0 !important;
+      padding: 1.2rem 1.4rem 2rem !important;
+      width: 100% !important;
       max-width: 100% !important;
-      box-sizing: border-box;
+      box-sizing: border-box !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      z-index: 10 !important;
+      transform: none !important;
     }
+    /* Título grande y legible */
     .fullscreen-card .card-content h3 {
-      font-size: 2rem !important;
+      font-size: 1.8rem !important;
+      margin-bottom: 0.3rem !important;
+      line-height: 1.1 !important;
+      color: #ffffff !important;
+    }
+    /* Subtítulo itálico */
+    .fullscreen-card .card-content > p:first-of-type {
+      font-size: 0.9rem !important;
+      margin-bottom: 0.5rem !important;
+      color: #90e0ef !important;
+    }
+    /* Descripción: solo 2 líneas con -webkit-line-clamp */
+    .fullscreen-card .card-content > p:nth-of-type(2) {
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      font-size: 0.82rem !important;
+      line-height: 1.4 !important;
+      margin-bottom: 1rem !important;
+      opacity: 0.8 !important;
+    }
+    /* Ocultar badge de dimensiones en mobile */
+    .fullscreen-card .card-content > div { display: none !important; }
+    /* Botón CTA ancho completo */
+    .fullscreen-card .card-content .catalog-cta {
+      padding: 0.75rem 1.4rem !important;
+      font-size: 0.9rem !important;
+      width: 100% !important;
+      text-align: center !important;
+      display: block !important;
+      box-sizing: border-box !important;
     }
     
     /* HERO */
@@ -2116,6 +2171,119 @@ c-198 101 -451 227 -562 278 -112 52 -203 99 -203 104 0 6 10 21 22 34 12 13
         });
       });
     }
+
+    // ===========================
+    // MOBILE CATALOG CARD OPTIMIZER
+    // ===========================
+    function applyMobileCatalogStyles() {
+      const isMobile = window.innerWidth <= 768;
+      const cards = document.querySelectorAll('.fullscreen-card');
+
+      cards.forEach(card => {
+        const content = card.querySelector('.card-content');
+        if (!content) return;
+
+        if (isMobile) {
+          // Override inline styles on the parent card
+          card.style.alignItems = 'stretch';
+          card.style.justifyContent = 'flex-end';
+          card.style.padding = '0';
+
+          // Fix the gradient overlay (second div child = overlay)
+          const overlay = card.querySelector('div[style*="gradient"]');
+          if (overlay) {
+            overlay.style.background = 'linear-gradient(to top, rgba(5,20,40,0.97) 0%, rgba(5,20,40,0.72) 35%, rgba(5,20,40,0.1) 70%, rgba(5,20,40,0) 100%)';
+          }
+
+          // Override the card-content inline styles
+          content.style.cssText = `
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            top: auto !important;
+            z-index: 10 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 1.2rem 1.4rem 2rem !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            text-align: left !important;
+          `;
+
+          // Fix title size
+          const title = content.querySelector('h3');
+          if (title) {
+            title.style.cssText = 'font-size: 1.75rem !important; margin-bottom: 0.3rem !important; line-height: 1.1 !important; color: #fff !important; font-family: inherit !important; font-weight: 800 !important; letter-spacing: -0.5px !important;';
+          }
+
+          // Fix subtitle (first <p>)
+          const paragraphs = content.querySelectorAll('p');
+          if (paragraphs[0]) {
+            paragraphs[0].style.cssText = 'font-size: 0.9rem !important; margin-bottom: 0.5rem !important; color: #90e0ef !important;';
+          }
+
+          // Fix description (second <p>) - truncate to 2 lines
+          if (paragraphs[1]) {
+            paragraphs[1].style.cssText = `
+              display: -webkit-box !important;
+              -webkit-line-clamp: 2 !important;
+              -webkit-box-orient: vertical !important;
+              overflow: hidden !important;
+              font-size: 0.82rem !important;
+              line-height: 1.4 !important;
+              margin-bottom: 0.9rem !important;
+              opacity: 0.82 !important;
+              color: rgba(255,255,255,0.85) !important;
+            `;
+          }
+
+          // Hide the dimensions badge <div>
+          const badge = content.querySelector('div');
+          if (badge) badge.style.display = 'none';
+
+          // Fix CTA button
+          const cta = content.querySelector('.catalog-cta');
+          if (cta) {
+            cta.style.cssText = 'display: block !important; width: 100% !important; text-align: center !important; padding: 0.75rem 1rem !important; font-size: 0.9rem !important; box-sizing: border-box !important; background: linear-gradient(135deg, #0077b6, #00b4d8) !important; color: white !important; border-radius: 30px !important; font-weight: 700 !important; text-decoration: none !important; box-shadow: 0 6px 20px rgba(0,119,182,0.4) !important;';
+          }
+
+        } else {
+          // DESKTOP: restore inline styles to original (remove our overrides)
+          card.style.alignItems = '';
+          card.style.justifyContent = '';
+          card.style.padding = '';
+
+          // Restore card-content to no inline override (original inline style takes over)
+          content.style.cssText = '';
+          content.setAttribute('style', content.getAttribute('data-original-style') || '');
+
+          // Restore elements
+          content.querySelectorAll('p').forEach(p => p.style.cssText = '');
+          const badge = content.querySelector('div');
+          if (badge) badge.style.display = '';
+          const title = content.querySelector('h3');
+          if (title) title.style.cssText = '';
+          const cta = content.querySelector('.catalog-cta');
+          if (cta) cta.style.cssText = '';
+        }
+      });
+    }
+
+    // Save original inline styles before we touch them
+    document.querySelectorAll('.fullscreen-card .card-content').forEach(el => {
+      el.setAttribute('data-original-style', el.getAttribute('style') || '');
+    });
+
+    // Run on load and on resize
+    applyMobileCatalogStyles();
+    window.addEventListener('resize', applyMobileCatalogStyles);
   });
 </script>
 </body>
