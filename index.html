@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XPools México — Piscinas Prefabricadas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+    --blue-deep: #ffffff;
+    --blue-mid: #f4f8fc;
+    --blue-bright: #0077b6;
+    --blue-glow: #00b4d8;
+    --blue-light: #90e0ef;
+    --white: #0a2540;
+    --white-dim: #4a5568;
+    --white-faint: rgba(10,37,64,0.1);
+    --accent: #0077b6;
+    --summer-gradient: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-serif: 'Playfair Display', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--blue-deep);
+    color: #0a2540;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 4rem;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,119,182,0.1);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 1000;
+  }
+  nav.scrolled {
+    padding: 0.6rem 4rem;
+    background: rgba(255,255,255,0.97);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  }
+  .nav-logo {
+    font-family: var(--font-sans);
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: #0077b6;
+  }
+  .nav-logo span { color: #0a2540; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: #4a5568;
+    text-decoration: none; 
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, #0077b6, #00b4d8);
+    transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 2px;
+  }
+  .nav-links a:hover { color: #0077b6; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    padding: 0.5rem 1.4rem;
+    border: 1px solid transparent; 
+    background: #0077b6; 
+    color: white !important;
+    border-radius: 40px;
+    transition: all 0.3s cubic-bezier(0.2,0.8,0.2,1) !important;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: #005f92 !important; color: white !important; transform: translateY(-1px); }
+
+  /* Pool catalog CTA button */
+  .catalog-cta {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+    color: white !important;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    transition: all 0.3s cubic-bezier(0.2,0.8,0.2,1);
+    box-shadow: 0 8px 25px rgba(0,119,182,0.35);
+    border: none;
+  }
+  .catalog-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 35px rgba(0,119,182,0.5);
+    color: white !important;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; background:
+      radial-gradient(ellipse 80% 60% at 50% 80%, rgba(10,122,191,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 30%, rgba(0,200,255,0.08) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(2,13,26,0.6) 0%, rgba(4,21,40,0.4) 40%, rgba(6,32,53,0.7) 70%, rgba(2,13,26,0.9) 100%);
+  }
+
+  .wave-layers {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background:
+      radial-gradient(ellipse 120% 80% at 50% 110%, rgba(10,122,191,0.4) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 70% 100%, rgba(0,100,160,0.3) 0%, transparent 50%);
+  }
+
+  /* Floating particles */
+  .particle {
+    position: absolute; border-radius: 50%;
+    background: rgba(0,200,255,0.4); animation: float linear infinite;
+    }
+  @keyframes float {
+    0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.2; }
+    100% { transform: translateY(-20vh) translateX(30px) scale(1); opacity: 0; }
+  }
+
+  .hero-eyebrow {
+    position: relative; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+    color: #0077b6; font-weight: 500; margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-title {
+    position: relative; font-family: var(--font-sans);
+    font-size: clamp(5rem, 14vw, 13rem);
+    line-height: 0.9; letter-spacing: 4px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-title .accent-line {
+    display: block; color: #0077b6;
+    
+  }
+  .hero-sub {
+    position: relative; font-size: 1rem; 
+    max-width: 420px; line-height: 1.7; margin: 1.5rem auto;
+    font-weight: 300; animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-cta {
+    position: relative; display: inline-block; margin-top: 1.5rem;
+    padding: 0.9rem 2.5rem;
+    background: var(--accent); color: var(--blue-deep);
+    font-weight: 600; text-decoration: none; border-radius: 40px;
+    font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,200,255,0.4);
+  }
+  .scroll-indicator {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+     font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .scroll-arrow {
+    width: 36px; height: 36px; border: none; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: #0077b6; font-size: 1rem;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+  /* STATS */
+  .stats-section {
+    padding: 5rem 4rem;
+    background: #ffffff;
+    border-top: 1px solid rgba(0,200,255,0.1);
+    border-bottom: 1px solid rgba(0,200,255,0.1);
+  }
+  .stats-label {
+    font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+    color: #0077b6; margin-bottom: 2rem;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
+    border: 1px solid rgba(0,200,255,0.12); border-radius: 12px; overflow: hidden;
+  }
+  .stat-card {
+    background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,119,182,0.1) !important;
+    padding: 2rem 2.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,119,182,0.1);
+  }
+  .stat-number {
+    font-family: var(--font-sans); font-size: 4rem; font-weight: 800; letter-spacing: -1px;
+    color: #0077b6; line-height: 1;
+  }
+  .stat-number sup { font-size: 1.5rem; }
+  .stat-desc {
+    font-size: 0.85rem;  margin-top: 0.5rem; font-weight: 300;
+  }
+
+  /* MODELOS */
+  .models-section { padding: 6rem 4rem; }
+  .section-header { margin-bottom: 3rem; }
+  .section-number {
+    font-size: 0.7rem; letter-spacing: 4px; color: #0077b6; text-transform: uppercase;
+  }
+  .section-title {
+    font-family: var(--font-sans); font-size: 4rem; font-weight: 800; letter-spacing: -1px; letter-spacing: 2px;
+    line-height: 1;
+  }
+  .section-body {
+     font-weight: 300; line-height: 1.8; max-width: 500px; margin-top: 1rem;
+  }
+
+  .models-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+  }
+  .model-card {
+    background: #ffffff;
+    border: 1px solid rgba(0,200,255,0.12);
+    border-radius: 16px; overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer; position: relative;
+  }
+  .model-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,200,255,0.4);
+  }
+  .model-card-img {
+    height: 180px;
+    background: linear-gradient(135deg, rgba(10,122,191,0.3), rgba(0,200,255,0.1));
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .pool-icon {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pool-svg { width: 120px; opacity: 0.8; }
+  .model-card-body { padding: 1.5rem; }
+  .model-tag {
+    font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: #0077b6;
+    margin-bottom: 0.5rem;
+  }
+  .model-name { font-family: var(--font-sans); font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; }
+  .model-desc {  font-size: 0.82rem; margin-top: 0.5rem; font-weight: 300; }
+  .model-num {
+    position: absolute; top: 1rem; right: 1rem;
+    font-family: var(--font-sans); font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; color: rgba(0,200,255,0.2);
+  }
+
+  /* PROCESO */
+  .process-section {
+    padding: 6rem 4rem;
+    background: #f4f8fc;
+    border-top: 1px solid rgba(0,200,255,0.08);
+  }
+  .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 3rem; }
+  .process-step { position: relative; padding: 2rem 1.5rem; }
+  .step-line {
+    position: absolute; top: 3.5rem; left: 50%; width: 100%;
+    height: 1px; background: linear-gradient(to right, rgba(0,200,255,0.4), rgba(0,200,255,0.05));
+  }
+  .process-step:last-child .step-line { display: none; }
+  .step-circle {
+    width: 52px; height: 52px; border-radius: 50%;
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-family: var(--font-sans); font-size: 1.4rem; color: #0077b6;
+    background: #e0f2fe; color: #0284c7; border: none;
+    position: relative; }
+  .step-title { font-weight: 500; font-size: 1rem; margin-bottom: 0.5rem; }
+  .step-desc { font-size: 0.82rem;  font-weight: 300; line-height: 1.7; }
+
+  /* TESTIMONIOS */
+  .reviews-section { padding: 6rem 4rem; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .review-card {
+    background: #ffffff;
+    border: 1px solid rgba(0,200,255,0.1);
+    border-radius: 16px; padding: 2rem;
+    transition: border-color 0.3s;
+  }
+  .review-card:hover { border-color: rgba(0,200,255,0.3); }
+  .review-stars { color: #0077b6; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 1rem; }
+  .review-text { font-size: 0.88rem;  line-height: 1.8; font-style: italic; font-weight: 300; }
+  .review-author { margin-top: 1.5rem; font-weight: 500; font-size: 0.9rem; }
+  .review-loc { font-size: 0.75rem; color: #0077b6; margin-top: 0.2rem; }
+
+  /* SUCURSALES */
+  .location-section {
+    padding: 6rem 4rem;
+    background: #f4f8fc;
+    border-top: 1px solid rgba(0,200,255,0.08);
+  }
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+  .location-item { padding: 1.5rem; border-left: 2px solid rgba(0,200,255,0.2); }
+  .location-city { font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700; color: #0077b6; margin-bottom: 0.5rem; }
+  .location-addr { font-size: 0.88rem;  font-weight: 300; line-height: 1.8; }
+  .location-hours { margin-top: 1rem; font-size: 0.8rem;  }
+  .location-hours strong { color: #0a2540; }
+
+  .contact-options { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 0.9rem 1.8rem; border-radius: 40px;
+    text-decoration: none; font-weight: 500; font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .contact-btn:hover { transform: translateY(-2px); }
+  .contact-btn.whatsapp { background: #25d366; color: #000; }
+  .contact-btn.whatsapp:hover { box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+  .contact-btn.quote {
+    background: transparent; color: #0077b6;
+    border: none;
+  }
+  .contact-btn.quote:hover { background: rgba(0,200,255,0.08); box-shadow: 0 8px 30px rgba(0,200,255,0.2); }
+
+  /* COBERTURA */
+  .coverage-section { padding: 6rem 4rem; }
+  .states-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .state-tag {
+    padding: 0.45rem 1.2rem;
+    border: 1px solid rgba(0,200,255,0.2); border-radius: 40px;
+    font-size: 0.8rem; 
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .state-tag:hover { border-color: #0077b6; color: #0077b6; }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid rgba(0,200,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    background: #0a2540; color: white;
+  }
+  .footer-logo { font-family: var(--font-sans); font-size: 1.4rem; letter-spacing: 3px; color: #0077b6; }
+  .footer-logo span {  }
+  .footer-menu { display: flex; gap: 2rem; list-style: none; }
+  .footer-menu a { text-decoration: none;  font-size: 0.8rem; transition: color 0.2s; }
+  .footer-menu a:hover { color: #0077b6; }
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+
+  /* Glow line */
+  .glow-divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--accent), transparent);
+    margin: 1rem 0;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 5rem 1.5rem 3rem; }
+    .stats-section, .models-section, .process-section, .reviews-section, .location-section, .coverage-section { padding: 4rem 1.5rem; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .models-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .location-grid { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
+    .footer-menu { flex-wrap: wrap; justify-content: center; }
+  }
+
+  /* ANIMACIONES GLOBALES (Fade in con blur) */
+  .reveal-blur {
+    opacity: 0;
+    filter: blur(15px);
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, filter, transform;
+  }
+  .reveal-blur.active {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+
+  /* CAROUSEL INSTALACIONES */
+  .hero-slider-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: #000;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  .slider-bgs {
+    position: absolute; inset: 0; }
+  .slider-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0; transition: opacity 1.2s ease-in-out, transform 8s ease-out;
+    transform: scale(1.05);
+  }
+  .slider-bg.active { opacity: 1; transform: scale(1); }
+  .slider-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0) 65%);
+    }
+  
+  .slider-content {
+    position: relative; display: flex; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 4rem;
+    align-items: center; gap: 4rem;
+  }
+  .slider-left {
+    flex: 1; max-width: 500px;
+    position: relative;
+  }
+  .slider-eyebrow {
+    font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: #0077b6; margin-bottom: 1.5rem;
+  }
+  .slider-title {
+    font-family: var(--font-sans); font-size: clamp(4rem, 8vw, 6rem); font-weight: 800; letter-spacing: -2px; line-height: 0.9;
+    letter-spacing: 2px; margin-bottom: 1.5rem; color: #0a2540;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  .slider-desc-container {
+    min-height: 150px;
+  }
+  .slider-list {
+    list-style: none; padding: 0; margin: 0 0 2rem 0;
+  }
+  .slider-list li {
+    font-size: 1rem;  margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem;
+    background: rgba(255,255,255,0.03); padding: 0.8rem 1.2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+  }
+  .slider-btn {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 2.5rem; background: rgba(0,200,255,0.1); border: 1px solid transparent; background: #0077b6; color: white !important;
+    color: #0077b6; border-radius: 40px; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .slider-btn:hover { background: var(--accent); color: #000; box-shadow: 0 10px 30px rgba(0,200,255,0.4); }
+  
+  .slider-controls {
+    display: flex; gap: 1rem; margin-top: 3rem;
+  }
+  .ctrl-btn {
+    width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: #0a2540; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s; backdrop-filter: blur(5px);
+  }
+  .ctrl-btn:hover { background: var(--accent); color: #000; border-color: #0077b6; }
+
+  .slider-right {
+    flex: 1;
+    overflow: hidden;
+    padding: 2rem 0;
+  }
+  .cards-track {
+    display: flex; gap: 2rem;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .slider-card {
+    min-width: 260px; height: 380px; border-radius: 20px;
+    background-size: cover; background-position: center;
+    position: relative; overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    transition: transform 0.4s, filter 0.4s;
+    cursor: pointer;
+  }
+  .slider-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  }
+  .slider-card:not(.active-card) {
+    transform: scale(0.9); filter: blur(2px) brightness(0.6);
+  }
+  .slider-card.active-card {
+    transform: scale(1); filter: blur(0) brightness(1);
+    border: 2px solid var(--accent);
+  }
+  .card-info {
+    position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; }
+  .card-info h4 {
+    font-family: var(--font-sans); font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; color: #0a2540; letter-spacing: 1px;
+  }
+  .card-info p {
+    font-size: 0.8rem; color: #0077b6; text-transform: uppercase; letter-spacing: 2px;
+  }
+
+  /* Animación para cambiar texto con blur */
+  .text-transition {
+    animation: textBlurFade 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  @keyframes textBlurFade {
+    0% { opacity: 0; filter: blur(10px); transform: translateY(20px); }
+    100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    .slider-content { flex-direction: column; padding: 2rem 1.5rem; gap: 2rem; margin-top: 4rem; }
+    .slider-left { max-width: 100%; text-align: center; }
+    .slider-controls { justify-content: center; }
+    .slider-card { min-width: 200px; height: 280px; }
+  }
+
+
+  /* SEAMLESS STACKING SECTIONS */
+  /* removed empty selector - stacking handled by fullscreen-card style */
+
+  
+  /* STACKING CARDS PARA MODELOS (ALBERCAS) */
+  .models-grid.stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 4rem;
+  }
+  .models-grid.stacked .model-card {
+    position: sticky;
+    top: 120px;
+    margin-bottom: 4rem;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+  }
+  .models-grid.stacked .model-card:nth-child(1) { z-index: 1; top: 120px; }
+  .models-grid.stacked .model-card:nth-child(2) { z-index: 2; top: 140px; }
+  .models-grid.stacked .model-card:nth-child(3) { z-index: 3; top: 160px; }
+  .models-grid.stacked .model-card:nth-child(4) { z-index: 4; top: 180px; }
+  .models-grid.stacked .model-card:nth-child(5) { z-index: 5; top: 200px; }
+  .models-grid.stacked .model-card:nth-child(6) { z-index: 6; top: 220px; }
+
+  /* THEME LIGHT */
+  .theme-light {
+    background-color: #ffffff !important;
+    color: #020d1a !important;
+  }
+  .theme-light .section-title, 
+  .theme-light .step-title,
+  .theme-light .model-name,
+  .theme-light .review-author,
+  .theme-light .location-city,
+  .theme-light .feature-card h3 {
+    color: #020d1a !important;
+  }
+  .theme-light .section-body,
+  .theme-light p,
+  .theme-light .model-desc,
+  .theme-light .step-desc,
+  .theme-light .review-text,
+  .theme-light .location-addr,
+  .theme-light .location-hours,
+  .theme-light .location-hours strong {
+    color: #4a5568 !important;
+  }
+  .theme-light .feature-card,
+  .theme-light .model-card,
+  .theme-light .review-card,
+  .theme-light .location-item {
+    background: #f4f7fb !important;
+    border-color: rgba(10, 122, 191, 0.15) !important;
+  }
+  .theme-light .feature-card:hover,
+  .theme-light .model-card:hover,
+  .theme-light .review-card:hover {
+    border-color: #0a7abf !important;
+    box-shadow: 0 10px 30px rgba(10, 122, 191, 0.1) !important;
+  }
+  .theme-light .accent-line,
+  .theme-light .section-number,
+  .theme-light .model-tag,
+  .theme-light .review-stars,
+  .theme-light .feature-icon svg {
+    color: #0a7abf !important;
+  }
+  .theme-light .glow-divider {
+    background: linear-gradient(to right, #0a7abf, transparent) !important;
+  }
+  .theme-light .step-circle,
+  .theme-light .feature-icon {
+    color: #0a7abf !important;
+    border-color: #0a7abf !important;
+    background: rgba(10, 122, 191, 0.05) !important;
+  }
+  .theme-light .step-line {
+    background: linear-gradient(to right, rgba(10, 122, 191, 0.4), rgba(10, 122, 191, 0.05)) !important;
+  }
+  .theme-light .state-tag {
+    border-color: rgba(10, 122, 191, 0.3) !important;
+    color: #4a5568 !important;
+  }
+  .theme-light .state-tag:hover {
+    border-color: #0a7abf !important;
+    color: #0a7abf !important;
+    background: rgba(10, 122, 191, 0.05) !important;
+  }
+  .theme-light .contact-btn.quote {
+    color: #0a7abf !important;
+    border-color: #0a7abf !important;
+  }
+  .theme-light .contact-btn.quote:hover {
+    background: rgba(10, 122, 191, 0.05) !important;
+  }
+
+
+  @media (max-width: 768px) {
+    /* NAV MOBILE */
+    nav { padding: 1rem 1.5rem !important; }
+    .nav-links { display: none !important; }
+    #hamburger-btn { display: flex !important; }
+    
+    /* FULLSCREEN CATALOG CARDS */
+    .fullscreen-card {
+      padding: 1.5rem !important;
+      justify-content: center !important;
+      align-items: flex-end !important;
+    }
+    .fullscreen-card > div:first-of-type {
+      background: linear-gradient(to top, rgba(10,37,64,0.95) 0%, rgba(10,37,64,0.5) 50%, rgba(10,37,64,0) 100%) !important;
+    }
+    .fullscreen-card .card-content {
+      margin-bottom: 2rem;
+      padding: 1.8rem !important;
+      width: 100%;
+      max-width: 100% !important;
+      box-sizing: border-box;
+    }
+    .fullscreen-card .card-content h3 {
+      font-size: 2rem !important;
+    }
+    
+    /* HERO */
+    .hero-text-block { padding: 0 1.5rem; }
+    
+    /* SECTIONS */
+    section { padding: 4rem 1.5rem !important; }
+    .features-grid { grid-template-columns: 1fr !important; }
+    .process-steps { grid-template-columns: 1fr !important; }
+    .reviews-grid { grid-template-columns: 1fr !important; }
+    .location-grid { grid-template-columns: 1fr !important; }
+    
+    /* FORM */
+    #formulario { padding: 4rem 1.5rem !important; }
+    #formulario form > div:first-child { grid-template-columns: 1fr !important; }
+    #cotizacion-form > div:first-child { grid-template-columns: 1fr !important; }
+    .anim-scalein > form > div:first-child { grid-template-columns: 1fr !important; }
+    [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+    
+    /* COVERAGE */
+    .coverage-section > div > div { flex-direction: column !important; }
+    
+    /* CAROUSEL */
+    .slider-cards-row { gap: 0.8rem !important; }
+    .slider-card { width: 130px !important; height: 160px !important; }
+    
+    /* TYPOGRAPHY */
+    .section-title { font-size: clamp(2rem, 8vw, 3rem) !important; }
+    
+    /* ANIM on mobile - shorter delays */
+    .delay-3, .delay-4, .delay-5, .delay-6 { transition-delay: 0.1s !important; }
+  }
+
+  /* Hamburger - hidden on desktop */
+  #hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Mobile nav overlay */
+  #mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: 60px;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1), opacity 0.4s ease;
+  }
+  #mobile-nav-overlay.open {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+  }
+  #mobile-nav-overlay a {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #0a2540;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+  #mobile-nav-overlay a:hover { color: #0077b6; }
+  #mobile-nav-overlay .nav-cta {
+    padding: 1rem 2.5rem !important;
+    font-size: 1rem !important;
+  }
+
+
+  /* MAP MOTION GRAPHIC */
+  .map-vector {
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
+  }
+  .map-graphic-container:hover .map-vector {
+    color: #b0d4e8; /* slightly darker blue on hover */
+  }
+  .map-pin {
+    z-index: 10;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .map-pin:hover {
+    transform: scale(1.3);
+    z-index: 20;
+  }
+  .pin-dot {
+    width: 16px; height: 16px; background: #ff4757; border-radius: 50%; 
+    border: 3px solid white; box-shadow: 0 4px 10px rgba(255,71,87,0.4); 
+    position: relative; z-index: 2; cursor: pointer;
+  }
+  .pin-pulse {
+    position: absolute; top: -8px; left: -8px; width: 32px; height: 32px; 
+    background: #ff4757; border-radius: 50%; 
+    animation: pulse-anim 2s infinite ease-out; z-index: 1;
+  }
+  .pin-tooltip {
+    position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(0px); 
+    background: #0a2540; color: white; padding: 0.6rem 1.2rem; border-radius: 12px; 
+    font-size: 0.8rem; font-weight: bold; white-space: nowrap; 
+    opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  .pin-tooltip::after {
+    content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    border-width: 6px; border-style: solid; border-color: #0a2540 transparent transparent transparent;
+  }
+  .map-pin:hover .pin-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  @keyframes bounce-indicator {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+  @keyframes pulse-anim {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+
+  /* ===== ANIMATION SYSTEM ===== */
+  /* Fade Up Blur */
+  .anim-fadeup {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(12px);
+    transition: opacity 0.9s cubic-bezier(0.2,0.8,0.2,1), 
+                transform 0.9s cubic-bezier(0.2,0.8,0.2,1), 
+                filter 0.9s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .anim-fadeup.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+  /* Fade In Blur (just blur, no translate) */
+  .anim-fadein {
+    opacity: 0;
+    filter: blur(16px);
+    transition: opacity 1s cubic-bezier(0.2,0.8,0.2,1),
+                filter 1s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .anim-fadein.visible { opacity: 1; filter: blur(0); }
+
+  /* Fade Left Swipe Blur */
+  .anim-swipeleft {
+    opacity: 0;
+    transform: translateX(-60px);
+    filter: blur(10px);
+    transition: opacity 0.85s cubic-bezier(0.2,0.8,0.2,1),
+                transform 0.85s cubic-bezier(0.2,0.8,0.2,1),
+                filter 0.85s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .anim-swipeleft.visible { opacity: 1; transform: translateX(0); filter: blur(0); }
+
+  /* Fade Right Swipe Blur */
+  .anim-swiperight {
+    opacity: 0;
+    transform: translateX(60px);
+    filter: blur(10px);
+    transition: opacity 0.85s cubic-bezier(0.2,0.8,0.2,1),
+                transform 0.85s cubic-bezier(0.2,0.8,0.2,1),
+                filter 0.85s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .anim-swiperight.visible { opacity: 1; transform: translateX(0); filter: blur(0); }
+
+  /* Scale In */
+  .anim-scalein {
+    opacity: 0;
+    transform: scale(0.85);
+    filter: blur(8px);
+    transition: opacity 0.8s cubic-bezier(0.2,0.8,0.2,1),
+                transform 0.8s cubic-bezier(0.2,0.8,0.2,1),
+                filter 0.8s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .anim-scalein.visible { opacity: 1; transform: scale(1); filter: blur(0); }
+
+  /* Stagger delays */
+  .delay-1 { transition-delay: 0.1s !important; }
+  .delay-2 { transition-delay: 0.2s !important; }
+  .delay-3 { transition-delay: 0.3s !important; }
+  .delay-4 { transition-delay: 0.4s !important; }
+  .delay-5 { transition-delay: 0.5s !important; }
+  .delay-6 { transition-delay: 0.6s !important; }
+
+  /* Gradient text utility */
+  .grad-text {
+    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 50%, #0077b6 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
+  }
+  @keyframes gradientShift {
+    0%,100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+  }
+  .grad-text-gold {
+    background: linear-gradient(135deg, #0a2540 0%, #0077b6 40%, #00b4d8 70%, #0a2540 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 5s ease infinite;
+  }
+
+  /* Floating label effect */
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase;
+    color: #0077b6; font-weight: 600; margin-bottom: 1rem;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 30px; height: 1px; background: #0077b6;
+  }
+
+  /* Force fullscreen pool catalog cards to always be visible */
+  .fullscreen-card, .fullscreen-card img {
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  .fullscreen-card img {
+    display: block;
+    transition: transform 0.6s ease-out;
+  }
+  .fullscreen-card:hover img {
+    transform: scale(1.04);
+  }
+  /* Card content entrance animation */
+  .fullscreen-card .card-content {
+    transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.4s ease;
+  }
+  .fullscreen-card:hover .card-content {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+  }
+  /* Catalog title gradient */
+  #modelos h2 .grad-text {
+    display: inline-block;
+  }
+</style>
+
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">X<span>Pools</span></div>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#modelos">Piscinas</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#reviews">Clientes</a></li>
+    <li><a href="#formulario">Cotización</a></li>
+    <li><a href="#contacto">Sucursales</a></li>
+    <li><a href="#formulario" class="nav-cta">Presupuesto</a></li>
+  </ul>
+  <!-- Hamburger for mobile -->
+  <button id="hamburger-btn" aria-label="Menú">
+    <svg width="22" height="22" fill="none" stroke="#0077b6" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+</nav>
+
+<!-- MOBILE NAV OVERLAY -->
+<div id="mobile-nav-overlay">
+  <a href="#nosotros">Nosotros</a>
+  <a href="#modelos">Piscinas</a>
+  <a href="#proceso">Proceso</a>
+  <a href="#reviews">Clientes</a>
+  <a href="#formulario">Cotización</a>
+  <a href="#contacto">Sucursales</a>
+  <a href="#formulario" class="nav-cta" style="display:inline-block; padding:1rem 2.5rem; background:#0077b6; color:white; border-radius:30px; font-weight:600; text-decoration:none; font-size:1rem; text-align:center;">Presupuesto</a>
+</div>
+
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <!-- VIDEO BACKGROUND -->
+  <video autoplay loop muted playsinline class="hero-video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
+    <source src="15556052-hd_1920_1080_24fps.mp4" type="video/mp4">
+  </video>
+  
+  <!-- BRIGHT SUMMER OVERLAY -->
+  <div class="hero-bg" style="position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.95) 100%); backdrop-filter: blur(4px);"></div>
+
+  <div class="hero-content" style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; padding-top: 4rem;">
+    
+    <!-- SOCIAL PROOF PILL -->
+    <div class="hero-social-pill" style="display: flex; align-items: center; gap: 0.8rem; background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); padding: 0.4rem 1.2rem; border-radius: 40px; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 4px 15px rgba(0,0,0,0.05); animation: fadeUp 0.8s ease both;">
+      <div class="avatars" style="display: flex; margin-right: 0.5rem;">
+        <img src="https://i.pravatar.cc/100?img=1" style="width:24px; height:24px; border-radius:50%; border:2px solid white; margin-left:-8px;" alt="user">
+        <img src="https://i.pravatar.cc/100?img=2" style="width:24px; height:24px; border-radius:50%; border:2px solid white; margin-left:-8px;" alt="user">
+        <img src="https://i.pravatar.cc/100?img=3" style="width:24px; height:24px; border-radius:50%; border:2px solid white; margin-left:-8px;" alt="user">
+        <img src="https://i.pravatar.cc/100?img=4" style="width:24px; height:24px; border-radius:50%; border:2px solid white; margin-left:-8px;" alt="user">
+      </div>
+      <span style="font-size: 0.8rem; font-weight: 500; color: #4a5568;">Más de 2000 familias felices. ¡Únete!</span>
+    </div>
+
+    <!-- MAIN TITLE -->
+    <h1 class="hero-title" style="font-family: var(--font-sans); font-weight: 800; font-size: clamp(3rem, 7vw, 6.5rem); line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; color: #0a2540; animation: fadeUp 0.8s 0.1s ease both;">
+      Piscinas. <span style="font-family: var(--font-serif); font-style: italic; font-weight: 600; background: var(--summer-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Familia.</span> <br>Verano.
+    </h1>
+    
+    <!-- SUBTITLE -->
+    <p class="hero-sub" style="font-size: 1.2rem; color: #2d3748; max-width: 500px; line-height: 1.6; font-weight: 400; margin-bottom: 2rem; animation: fadeUp 0.8s 0.2s ease both;">
+      Fabricantes de piscinas prefabricadas número 1 en México. Instalación en solo 3 a 7 días.
+    </p>
+
+    <!-- CTA -->
+    <a href="#modelos" class="hero-cta-btn" style="display: inline-block; padding: 1rem 2.5rem; background: #0a2540; color: white; border-radius: 40px; font-weight: 600; text-decoration: none; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s; animation: fadeUp 0.8s 0.3s ease both;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(10,37,64,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">Ver Piscinas</a>
+
+  </div>
+
+  <!-- Scroll indicator -->
+  <div style="position: absolute; bottom: 130px; left: 50%; transform: translateX(-50%); z-index: 10; animation: bounce-indicator 2s ease infinite;">
+    <svg width="26" height="26" fill="none" stroke="#0077b6" stroke-width="2.5" viewBox="0 0 24 24" style="opacity: 0.65;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+
+  <!-- GLASSMORPHISM STATS BAR AT BOTTOM -->
+  <div class="hero-stats-glass" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); width: 90%; max-width: 900px; display: grid; grid-template-columns: repeat(4, 1fr); background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.6); border-radius: 24px; padding: 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); animation: fadeUp 0.8s 0.5s ease both;">
+    
+    <div style="text-align: center; border-right: 1px solid rgba(10,37,64,0.1);">
+      <div style="font-family: var(--font-sans); font-weight: 700; font-size: 2.2rem; color: #0a2540;">2000+</div>
+      <div style="font-size: 0.75rem; color: #4a5568; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Instalaciones</div>
+    </div>
+    <div style="text-align: center; border-right: 1px solid rgba(10,37,64,0.1);">
+      <div style="font-family: var(--font-sans); font-weight: 700; font-size: 2.2rem; color: #0a2540;">15</div>
+      <div style="font-size: 0.75rem; color: #4a5568; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Años Garantía</div>
+    </div>
+    <div style="text-align: center; border-right: 1px solid rgba(10,37,64,0.1);">
+      <div style="font-family: var(--font-sans); font-weight: 700; font-size: 2.2rem; color: #0a2540;">36+</div>
+      <div style="font-size: 0.75rem; color: #4a5568; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Modelos</div>
+    </div>
+    <div style="text-align: center;">
+      <div style="font-family: var(--font-sans); font-weight: 700; font-size: 2.2rem; color: #0a2540;">3-7</div>
+      <div style="font-size: 0.75rem; color: #4a5568; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Días Instalación</div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- INSTALACIONES (CAROUSEL interactivo) -->
+<section class="hero-slider-section" id="instalaciones" style="margin-top: 1rem;">
+  <div class="slider-bgs">
+    <div class="slider-bg active" style="background-image: url('pool1.jpg');"></div>
+    <div class="slider-bg" style="background-image: url('pool2.jpg');"></div>
+    <div class="slider-bg" style="background-image: url('pool3.jpg');"></div>
+    <div class="slider-bg" style="background-image: url('pool4.jpg');"></div>
+    <div class="slider-bg" style="background-image: url('pool5.jpg');"></div>
+    <div class="slider-overlay"></div>
+  </div>
+  
+  <div class="slider-content">
+    <div class="slider-left">
+      <p class="slider-eyebrow text-transition" id="eyebrow-el">Conoce algunas de nuestras instalaciones</p>
+      <h2 class="slider-title text-transition" id="title-el">X-Line</h2>
+      <div class="slider-desc-container text-transition" id="desc-el" style="text-shadow: 0 0 20px rgba(255,255,255,1), 0 0 40px rgba(255,255,255,1);">
+        <ul class="slider-list">
+          <li><span style="color:var(--accent);">✓</span> Terraza Betania - Tonalá, Jalisco</li>
+          <li><span style="color:var(--accent);">✓</span> Familia Lopez - Cajititlán, Jalisco</li>
+          <li><span style="color:var(--accent);">✓</span> Cabañas Haret - Mazamitla, Jalisco</li>
+        </ul>
+      </div>
+      <button class="slider-btn text-transition" id="btn-el">Solicitar Cotización →</button>
+      
+      <div class="slider-controls">
+        <button class="ctrl-btn" onclick="moveSlide(-1)">❮</button>
+        <button class="ctrl-btn" onclick="moveSlide(1)">❯</button>
+      </div>
+    </div>
+    
+    <div class="slider-right">
+      <div class="cards-track" id="cards-track">
+        <!-- Tarjetas del carrusel -->
+        <div class="slider-card active-card" onclick="goToSlide(0)" style="background-image: url('pool1.jpg');">
+          <div class="card-info">
+            <p>01</p>
+            <h4>X-Line</h4>
+          </div>
+        </div>
+        <div class="slider-card" onclick="goToSlide(1)" style="background-image: url('pool2.jpg');">
+          <div class="card-info">
+            <p>02</p>
+            <h4>Key West</h4>
+          </div>
+        </div>
+        <div class="slider-card" onclick="goToSlide(2)" style="background-image: url('pool3.jpg');">
+          <div class="card-info">
+            <p>03</p>
+            <h4>Miami Beach</h4>
+          </div>
+        </div>
+        <div class="slider-card" onclick="goToSlide(3)" style="background-image: url('pool4.jpg');">
+          <div class="card-info">
+            <p>04</p>
+            <h4>Santa Monica</h4>
+          </div>
+        </div>
+        <div class="slider-card" onclick="goToSlide(4)" style="background-image: url('pool5.jpg');">
+          <div class="card-info">
+            <p>05</p>
+            <h4>Daytona Beach</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- QUIENES SOMOS -->
+<section class="features-section theme-light" id="nosotros" style="padding: 6rem 4rem; background: #ffffff; border-top: 1px solid rgba(0,200,255,0.1); border-bottom: 1px solid rgba(0,200,255,0.1);; ">
+  <div class="section-header" style="text-align: center; margin-bottom: 4rem;">
+    <p class="section-eyebrow anim-fadein" style="justify-content: center; display: flex; margin-bottom: 1.5rem;">01 — Nosotros</p>
+    <div class="glow-divider anim-scalein delay-1" style="margin: 1rem auto;"></div>
+    <h2 class="section-title anim-fadeup delay-2" style="font-family: var(--font-sans); font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 800; letter-spacing: -1px; line-height: 1.05;">
+      ¿Quiénes <span class="grad-text" style="font-family: var(--font-serif); font-style: italic;">Somos?</span>
+    </h2>
+    <p class="anim-fadeup delay-3" style="max-width: 520px; margin: 1.5rem auto 0; font-size: 1.05rem; color: #4a5568; font-weight: 300; line-height: 1.7;">
+      La fábrica de piscinas prefabricadas número uno en México, con presencia internacional.
+    </p>
+  </div>
+  <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+    
+    <!-- 1 -->
+    <div class="feature-card anim-fadeup delay-1" style="background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,119,182,0.1) !important; padding: 2rem; border-radius: 12px; border: 1px solid rgba(0,119,182,0.1); text-align: center; transition: transform 0.3s, border-color 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(0,200,255,0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(0,200,255,0.08)';">
+      <div class="feature-icon" style="width: 60px; height: 60px; margin: 0 auto 1.5rem; background: rgba(0,200,255,0.1); border-radius: 50%; border: 1px solid transparent; background: #0077b6; color: white !important; display: flex; align-items: center; justify-content: center; color: #0077b6;">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15l-3.5 2 1-4-3-2.5 4-.5L12 6l1.5 4 4 .5-3 2.5 1 4z"></path></svg>
+      </div>
+      <h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; color: #0077b6; margin-bottom: 1rem;">SOMOS LOS NÚMERO 1</h3>
+      <p style="font-size: 0.85rem;  font-weight: 300; line-height: 1.6;">Somos la fábrica de piscinas prefabricadas de más alta calidad, utilizando materias primas de última generación que garantizan productos duraderos y de excelente rendimiento.</p>
+    </div>
+
+    <!-- 2 -->
+    <div class="feature-card anim-fadeup delay-2" style="background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,119,182,0.1) !important; padding: 2rem; border-radius: 12px; border: 1px solid rgba(0,119,182,0.1); text-align: center; transition: transform 0.3s, border-color 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(0,200,255,0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(0,200,255,0.08)';">
+      <div class="feature-icon" style="width: 60px; height: 60px; margin: 0 auto 1.5rem; background: rgba(0,200,255,0.1); border-radius: 50%; border: 1px solid transparent; background: #0077b6; color: white !important; display: flex; align-items: center; justify-content: center; color: #0077b6;">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l5-5 4 4 5-5"></path></svg>
+      </div>
+      <h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; color: #0077b6; margin-bottom: 1rem;">MÁS DE 2000 INSTALACIONES</h3>
+      <p style="font-size: 0.85rem;  font-weight: 300; line-height: 1.6;">Nos hemos consolidado como líderes en el mercado de piscinas prefabricadas, siendo la mayor fábrica de México en este sector. Con más de 40 modelos distintos.</p>
+    </div>
+
+    <!-- 3 -->
+    <div class="feature-card anim-fadeup delay-3" style="background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,119,182,0.1) !important; padding: 2rem; border-radius: 12px; border: 1px solid rgba(0,119,182,0.1); text-align: center; transition: transform 0.3s, border-color 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(0,200,255,0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(0,200,255,0.08)';">
+      <div class="feature-icon" style="width: 60px; height: 60px; margin: 0 auto 1.5rem; background: rgba(0,200,255,0.1); border-radius: 50%; border: 1px solid transparent; background: #0077b6; color: white !important; display: flex; align-items: center; justify-content: center; color: #0077b6;">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+      </div>
+      <h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; color: #0077b6; margin-bottom: 1rem;">15 AÑOS DE GARANTÍA</h3>
+      <p style="font-size: 0.85rem;  font-weight: 300; line-height: 1.6;">Ofrecemos 15 años de garantía sobre la estructura de la piscina. Las piscinas X-pools otorgan una mayor solidez y facilitan la instalación, eliminando trabajos complejos.</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="feature-card anim-fadeup delay-4" style="background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,119,182,0.1) !important; padding: 2rem; border-radius: 12px; border: 1px solid rgba(0,119,182,0.1); text-align: center; transition: transform 0.3s, border-color 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(0,200,255,0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(0,200,255,0.08)';">
+      <div class="feature-icon" style="width: 60px; height: 60px; margin: 0 auto 1.5rem; background: rgba(0,200,255,0.1); border-radius: 50%; border: 1px solid transparent; background: #0077b6; color: white !important; display: flex; align-items: center; justify-content: center; color: #0077b6;">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+      </div>
+      <h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; color: #0077b6; margin-bottom: 1rem;">INSTALACIÓN DE 3 A 7 DÍAS</h3>
+      <p style="font-size: 0.85rem;  font-weight: 300; line-height: 1.6;">Nuestras piscinas están diseñadas para instalarse en un período de 3 a 7 días. Todas las equipamos con filtrado, motobomba, skimmer, iluminación LED e hidromasajes.</p>
+    </div>
+
+    <!-- 5 -->
+    <div class="feature-card anim-fadeup delay-5" style="background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,119,182,0.1) !important; padding: 2rem; border-radius: 12px; border: 1px solid rgba(0,119,182,0.1); text-align: center; transition: transform 0.3s, border-color 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(0,200,255,0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(0,200,255,0.08)';">
+      <div class="feature-icon" style="width: 60px; height: 60px; margin: 0 auto 1.5rem; background: rgba(0,200,255,0.1); border-radius: 50%; border: 1px solid transparent; background: #0077b6; color: white !important; display: flex; align-items: center; justify-content: center; color: #0077b6;">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"></path></svg>
+      </div>
+      <h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; color: #0077b6; margin-bottom: 1rem;">EMPRESA INTERNACIONAL</h3>
+      <p style="font-size: 0.85rem;  font-weight: 300; line-height: 1.6;">Somos una empresa internacional con presencia en México, Estados Unidos, Brasil, el Caribe y Centroamérica. Nuestro compromiso es estar más cerca de ti.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROCESO -->
+<section class="process-section" id="proceso">
+  <div class="section-header">
+    <p class="section-number">02 — Proceso</p>
+    <div class="glow-divider"></div>
+    <h2 class="section-title anim-fadeup delay-1" style="font-size: clamp(3rem, 6vw, 4rem);">Conoce el <span class="grad-text" style="font-family: var(--font-serif); font-style: italic;">Proceso</span><br><span style="font-weight: 300; font-size: 0.8em;">de instalación</span></h2>
+  </div>
+
+  <div class="process-steps">
+    <div class="process-step anim-fadeup">
+      <div class="step-line"></div>
+      <div class="step-circle">1</div>
+      <h3 class="step-title">Escoges tu piscina</h3>
+      <p class="step-desc">Entre nuestra amplia variedad de 36 modelos en diferentes medidas, te ayudaremos a elegir la piscina ideal para ti y tu familia, siempre tomando en cuenta tus necesidades y el espacio disponible</p>
+    </div>
+    <div class="process-step anim-fadeup">
+      <div class="step-line"></div>
+      <div class="step-circle">2</div>
+      <h3 class="step-title">Traslado de tu piscina</h3>
+      <p class="step-desc">Nuestro equipo técnico y de instalación lleva tu piscina hasta tu hogar con todas las medidas de seguridad necesarias, listos para comenzar la instalación cumpliendo todos los requisitos técnicos.</p>
+    </div>
+    <div class="process-step anim-fadeup">
+      <div class="step-line"></div>
+      <div class="step-circle">3</div>
+      <h3 class="step-title">Instalación en solo 3 a 7 días</h3>
+      <p class="step-desc">Nuestro equipo especializado se encarga de todo el proceso, desde la excavación hasta dejar tu piscina lista para disfrutar en familia.</p>
+    </div>
+    <div class="process-step anim-fadeup">
+      <div class="step-circle">4</div>
+      <h3 class="step-title">¡A disfrutar en familia!</h3>
+      <p class="step-desc">Dejamos tu piscina instalada y lista para usar, con un trabajo rápido, seguro y de calidad profesional.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- MODELOS (Fullscreen Sticky Catalog) -->
+<section class="models-section" id="modelos" style="position: relative; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); padding: 0;">
+  
+  <!-- Intro Title for Models -->
+  <div style="text-align: center; padding: 6rem 2rem 4rem; background: #f4f8fc;">
+    <p class="section-eyebrow anim-fadein" style="justify-content: center; display: flex; margin-bottom: 1rem;">03 — Catálogo</p>
+    <div class="glow-divider" style="margin: 1rem auto;"></div>
+    <h2 class="section-title anim-fadeup delay-1" style="color: #0a2540; font-size: clamp(3rem, 7vw, 5.5rem);">Nuestras <span class="grad-text" style="font-family: var(--font-serif); font-style: italic;">Piscinas</span></h2>
+    <p class="anim-fadeup delay-2" style="color: #4a5568; font-size: 1rem; margin-top: 1rem; font-weight: 300;">Más de 36 modelos disponibles · Instalación en 3–7 días · Garantía 15 años</p>
+  </div>
+
+  <div class="models-fullscreen-wrapper" style="position: relative;">
+
+    <!-- Model 1 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 1;">
+      <img src="pool1.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">D10 Daytona Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">¡Nuestra piscina estrella! Es ideal para espacios grandes y compartir con la familia y amigos. Su fabricación en fibra de vidrio, acabado de Gel Coat, diseño novedoso con banca y escalera en extremos contrarios la transforma en un gran espacio de convivencia. Si además recibirás invitados, cabrán todos por su excelente tamaño y forma. ¡Equípala con Hidromasajes y agrégale iluminación LED! Convierte tu espacio en el área favorita de tu hogar.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20D10 Daytona Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 2 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 2;">
+      <img src="pool2.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">D4</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">En la línea Daytona Beach, contamos con piscinas desde 4 metros hasta 10 metros de largo, ideales para casas, hoteles y casas de campo. Cambia el entorno de tu exterior con un espacio sofisticado, moderno e innovador. Nuestros diseños están pensados para ti y tu familia o amigos, pasarás momentos memorables en esta piscina de fibra de vidrio, acabado de Gel Coat, diseño novedoso con banca y escalera en extremos contrarios.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20D4" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 3 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 3;">
+      <img src="pool3.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">D5 Daytona Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Sabemos lo importante que es para ti seleccionar ese lugar en el que vivirás grandes momentos. Uno de nuestros diseños favoritos es esta piscina de fibra de vidrio, acabado de Gel Coat, diseño novedoso con banca y escalera en extremos contrarios. Ideal para casas, hoteles y casas de campo. ¡Decídete por esta opción y disfrutarás a lo grande, más aún si la equipas con hidromasajes y le agregas iluminación LED!</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20D5 Daytona Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 4 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 4;">
+      <img src="pool4.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">D6 Daytona Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Piscina de fibra de vidrio, acabado de Gel Coat, diseño novedoso con banca y escalera en extremos contrarios. El modelo perfecto para llegar a casa y echarse un salto a la piscina. Aprovecha los momentos de relax y tranquilidad en un área con una piscina como esta. ¡Equípala con Hidromasajes y agrégale iluminación LED! Convierte tu espacio en el área favorita de tu hogar.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20D6 Daytona Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 5 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 5;">
+      <img src="pool5.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">D7 Daytona Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">En la línea Daytona Beach, contamos con piscinas desde 4 metros hasta 10 metros de largo, ideales para casas, hoteles y casas de campo. Cambia el entorno de tu exterior con un espacio sofisticado, moderno e innovador. Nuestros diseños están pensados para ti y tu familia o amigos, pasarás momentos memorables en esta piscina de fibra de vidrio, acabado de Gel Coat, diseño novedoso con banca y escalera en extremos contrarios.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20D7 Daytona Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 6 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 6;">
+      <img src="pool6.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">D8 Daytona Bech</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Sabemos lo importante que es para ti seleccionar ese lugar en el que vivirás grandes momentos. Uno de nuestros diseños favoritos es esta piscina de fibra de vidrio, acabado de Gel Coat, diseño novedoso con banca y escalera en extremos contrarios. Ideal para casas, hoteles y casas de campo. ¡Decídete por esta opción y disfrutarás a lo grande, más aún si la equipas con hidromasajes y le agregas iluminación LED!</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20D8 Daytona Bech" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 7 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 7;">
+      <img src="pool7.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">D9 Daytona Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Si te gusta la fiesta, este diseño es el ideal. Cuenta con una banca perfecta para compartir sentados con tus familiares y amigos mientras disfrutan y se cuentan los grandes momentos. Está fabricada en fibra de vidrio con acabado Gel Coat y las dimensiones son adecuadas para grandes concurrencias. Ideal para casas, hoteles y casas de campo.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20D9 Daytona Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 8 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 8;">
+      <img src="pool8.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">K1 Kids</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Te presentamos nuestra piscina en la que priorizamos la seguridad de los más pequeños de la casa. Sabemos lo importante que es tu familia para ti y para nosotros también. No solo el compartir bellos momentos sino que sea en un ambiente seguro. La puedes equipar con iluminación e hidromasaje. Tiene su resbaladilla integrada para la diversión de los pequeños. Perfecta para complementarla con una piscina de mayor tamaño. ¡Al agua patos!</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20K1 Kids" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 9 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 9;">
+      <img src="pool8.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">K3 Key West</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">El espacio no es un problema si tienes un área reducida para poner la piscina de tus sueños. Porque lo importante es jugar en ella, echarte un clavado para refrescarte y que tu familia y/o amigos se relajen contigo, por lo tanto, este diseño es el mejor. Este diseño de piscina rectangular, fabricada en fibra de vidrio con acabado de Gel Coat y banca y escalera en el mismo extremo, será el ideal para dar realce a tu hogar.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20K3 Key West" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 10 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 10;">
+      <img src="pool9.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">K4 Key West</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Nuestra línea estrella, gracias al espacio amplio de nado que hace tan atractivo este diseño de piscina rectangular, fabricada en fibra de vidrio con acabado de Gel Coat y banca y escalera en el mismo extremo. Ejercítate, mejora tu salud y disfruta de tus hobbies en la piscina de tus sueños. La modernidad de tu piscina agregando un valor a tu hogar.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20K4 Key West" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 11 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 11;">
+      <img src="pool10.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">K5 Key West</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Este modelo de piscina fabricado en fibra de vidrio con diseño rectangular que da un área de nado mayor por contar con banca y escalera en el mismo extremo te permitirá hacer tus rutinas de ejercicio gozando además de un espacio moderno e innovador. Sin duda, un gran diseño digno de representar la modernidad en nuestras piscinas, conservando lo tradicional y agregando un valor a tu hogar.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20K5 Key West" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 12 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 12;">
+      <img src="pool1.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">K6 Key West</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">La piscina de fibra Cancún ofrece el modelo clásico rectangular con gran aprovechamiento del área útil y su estilo es uno de los elementos que más valoran la decoración de una casa.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20K6 Key West" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 13 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 13;">
+      <img src="pool2.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">K7 Key West</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Si tu deseo es jugar en la piscina, echarte un clavado para refrescarte y que tu familia y/o amigos se relajen contigo, este diseño es el mejor. Este modelo cuenta con un área de nado mayor y al ser una piscina de fibra de vidrio con acabado de Gel Coat y diseño rectangular, que cuenta con banca y escalera en el mismo extremo, se logra maximizar todo el potencial de su espacio.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20K7 Key West" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 14 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 14;">
+      <img src="pool3.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">K8 Key West</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Si buscas espacio amplio de nado, este es el modelo apropiado. Dado que es una piscina de fibra de vidrio con acabado de Gel Coat, diseño rectangular y que además cuenta con banca y escalera en el mismo extremo, dejando un área de nado mayor. Contamos con los tamaños ideales para tu hogar, hotel, casa de campo y/o más.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20K8 Key West" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 15 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 15;">
+      <img src="pool4.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">M3 Miami Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Una gran opción para satisfacer la necesidad de un espacio pequeño con este modelo que se ajusta perfectamente a áreas más reducidas. Piscina de fibra de vidrio con acabado de Gel Coat y mosaico veneciano en la parte superior de las paredes, además de escalera en un extremo. Es hora de tener momentos especiales, es hora de cumplir el sueño de tener una piscina en casa.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20M3 Miami Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 16 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 16;">
+      <img src="pool5.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">M4 Miami Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Este es el modelo ideal para espacios que no son muy grandes, pues se amoldará perfectamente a la superficie en que quieras instalar esta piscina de fibra de vidrio y acabado de Gel Coat con mosaico veneciano en la parte superior de las paredes. Goza de momentos inolvidables de descanso o de esparcimiento mientras los niños y tus invitados se divierten. Cuenta con banca y escaleras en los extremos contrarios.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20M4 Miami Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 17 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 17;">
+      <img src="pool6.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">M5 Miami Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Si siempre has querido contar con ese lugar en el que puedes relajarte o hacer un poco de ejercicio nadando, tienes que elegir esta piscina fabricada con fibra de vidrio y acabado de Gel Coat. Tendrás un modelo sofisticado y elegante por el mosaico veneciano que reviste la parte superior de sus paredes. Y además contarás con banca y escaleras en los extremos contrarios para mayor comodidad. Embellece tu área y empieza a disfrutar de tu día a día.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20M5 Miami Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 18 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 18;">
+      <img src="pool7.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">M6 Miami Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Es hora de tener momentos especiales dentro de tu piscina, es hora de cumplir el sueño de tener una piscina en casa. Y aquí te ayudamos a elegir el modelo adecuado, pues por su tamaño y diseño es el mejor para pasar días maravillosos en el espacio favorito de la familia. Disfrutarás de esta piscina fabricada en fibra de vidrio y con acabado de Gel Coat, que además tiene mosaico veneciano en la parte superior de las paredes, más banca y escaleras en los extremos contrarios.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20M6 Miami Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 19 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 19;">
+      <img src="pool8.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">M7 Miami Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Embellece los espacios que habitas con una piscina fabricada en fibra de vidrio y acabado de Gel Coat. Por su mosaico veneciano en la parte superior de las paredes da un aire de sofisticación y lujo, que crea estética alrededor. Resalta la elegancia de tu hogar con nuestra línea Miami Beach. Pasa momentos de convivencia y relajamiento en su banca, para tu comodidad tiene escalera en extremos contrarios.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20M7 Miami Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 20 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 20;">
+      <img src="pool9.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">M8 Miami Beach</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Te presentamos uno de los diseños favoritos de la marca. Esta piscina de fibra de vidrio con acabado de Gel Coat, cuenta con banca y escalera en extremos contrarios. Cambia la apariencia de tu ambiente externo con esta piscina que hará las delicias de tu familia o invitados. Resalta la elegancia de tu hogar con nuestra línea Miami Beach, este diseño cuenta con mosaico veneciano en el borde de tu piscina.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20M8 Miami Beach" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 21 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 21;">
+      <img src="pool10.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">S10 Santa Mónica</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">¡Qué mejor lugar para compartir con familia y amigos que este gran diseño! Tu piscina de fibra de vidrio, acabado de Gel Coat, diseño ovalado, banca y escalera en extremos contrarios será un sitio de convivencia y diversión. Ideal para espacios grandes y compartir con la familia y amigos. La comodidad de contar con banca y escalones en lados opuestos le da un atributo especial cuando tienes casa llena. Llena tu espacio de elegancia y confort con nuestro bello modelo.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20S10 Santa Mónica" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 22 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 22;">
+      <img src="pool1.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">S3 Santa Monica</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Guadalajara: Carretera Chapala a Guadalajara #1127</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20S3 Santa Monica" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 23 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 23;">
+      <img src="pool7.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">S4 Santa Mónica</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Imbé es la piscina de fibra ideal para áreas de ocio o azoteas con espacio reducido, o mismo para quien desea tener una piscina de 4 metros.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20S4 Santa Mónica" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 24 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 24;">
+      <img src="pool2.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">S5 Santa Mónica</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Vacaciones, verano, fiestas, celebraciones, cualquier momento es bueno para gozarlo junto a la piscina ovalada que elegirás. Disfruta de momentos de relajación y esparcimiento en este modelo fabricado en fibra de vidrio y con acabado de Gel Coat que cuenta con escalones y banca en lados opuestos de la misma. ¡No esperes más y decídete por esta maravillosa opción!</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20S5 Santa Mónica" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 25 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 25;">
+      <img src="pool3.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">S6 Santa Mónica</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Aprovecha un maravilloso día soleado disfrutando con amigos o familia mientras se divierten en esta piscina ovalada, fabricada en fibra de vidrio y con acabado de Gel Coat. Si el espacio donde se instalará es mediano este modelo se amolda maravillosamente para sacar el mejor provecho del lugar donde se ponga. ¡Qué empiece la diversión en la piscina!</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20S6 Santa Mónica" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 26 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 26;">
+      <img src="pool4.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">S7 Santa Mónica</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Si quieres aprovechar al máximo esos días que invitan a pasarlos en la piscina, decídete por instalar este modelo de fibra de vidrio con acabado de Gel Coat. ¡Ponle alegría a tus días eligiendo esta opción! Tiene diseño ovalado ideal para espacios amplios o reducidos que van muy bien con prácticamente cualquier superficie donde quieras ponerla. Sus escalones y banca en lados opuestos ofrecen una gran comodidad.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20S7 Santa Mónica" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 27 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 27;">
+      <img src="pool5.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">S8 Santa Mónica</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Si te preocupa el espacio, este modelo Santa Mónica te resolverá el problema. Pues por su diseño novedoso en forma ovalada se ajusta favorablemente al terreno en el que decidas ponerlo. Además, tenemos la ventaja de que la instalación de una piscina como esta, te sorprenderá por la eficiencia y rapidez con que trabajamos. Por si fuera poco, tiene banca y escalones en lados opuestos para sentarte y disfrutar. ¡No esperes más y elige este diseño!</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20S8 Santa Mónica" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 28 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 28;">
+      <img src="pool6.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">S9 Santa Mónica</h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">¡Listos para divertirnos en la piscina! Fabricada en fibra de vidrio, acabado de Gel Coat y por su diseño ovalado tendrás el mejor lugar para espacios amplios a los cuales darles el realce que buscas. Este modelo moderno y novedoso por su forma ovalada, es el ideal para elegir si aprovechas las mejores épocas del año para convivir y gozar con amigos o familia. Relájate y disfruta al máximo de este espacio en tu casa.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20S9 Santa Mónica" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 29 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-end; padding: 4rem; z-index: 29;">
+      <img src="pool7.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to left, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">X7 <em style="font-family:var(--font-serif);font-style:italic;font-size:0.7em;color:#90e0ef;">X-Line</em></h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Piscina de fibra de vidrio, acabado de Gel Coat, diseño cuadrado con escalera en un extremo. Este diseño resalta la comodidad y seguridad para las familias con pequeños, también para aquellos que harán de su piscina un lugar de diversión. Salte de lo tradicional y elige este modelo que incorpora comodidad y diseño a tu espacio familiar. Si además quieres una experiencia de relajación muy especial, puedes equiparla con hidromasajes.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20X7%20X-Line" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+    <!-- Model 30 -->
+    <div class="fullscreen-card" style="position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 4rem; z-index: 30;">
+      <img src="pool9.jpg" alt="Piscina XPools" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, rgba(10,37,64,0.75) 0%, rgba(10,37,64,0.4) 45%, rgba(10,37,64,0) 70%);"></div>
+      <div class="card-content" style="position: relative; z-index: 2; max-width: 550px; padding: 3rem; background: rgba(10,37,64,0.8); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: left;">
+        <h3 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -1px; color: #ffffff; margin-bottom: 0.5rem;">X9 <em style="font-family:var(--font-serif);font-style:italic;font-size:0.7em;color:#90e0ef;">X-Line</em></h3>
+        <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: #90e0ef; margin-bottom: 1.5rem;">Un espacio exclusivo en tu hogar.</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 2rem; font-size: 1.05rem;">Presentamos la línea X Line, donde el lujo se encuentra con la artesanía superior. Está piscina redefine la elegancia y la sofisticación con sus exquisitos acabados y mosaicos personalizados. Eleve su espacio al aire libre con un toque de opulencia y disfrute de la mejor experiencia en la piscina. Pero eso no es todo, los modelos pueden incluir un jacuzzi incorporado, lo que agrega un nivel adicional de relajación. Transforma tu día en pura felicidad mientras te sumerges en las cálidas burbujas y te relajas después de una larga jornada. Con la Línea X-Line, puedes deleitar tus mágicos momentos provocando que este sea su espacio favorito de la casa.</p>
+        <div style="margin-bottom: 2.5rem;"><span style="background: rgba(0,200,255,0.2); color: #90e0ef; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.8rem;">📐 Dimensiones adjuntas</span></div>
+        <a href="https://wa.me/523321568285?text=Hola,%20me%20interesa%20la%20piscina%20modelo%20X9%20X-Line" target="_blank" class="catalog-cta">Cotizar Modelo →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="section-header">
+    <p class="section-number">03 — Testimonios</p>
+    <div class="glow-divider"></div>
+    <h2 class="section-title anim-fadeup delay-1"><span style="font-weight: 300; font-size: 0.9em; display: block;">Lo que dicen</span><span class="grad-text" style="font-family: var(--font-serif); font-style: italic;">Nuestras Familias</span></h2>
+    <p class="section-body">Te presentamos a algunos de nuestros clientes felices en Jalisco, Aguascalientes, Nayarit, Michoacán, Colima, Zacatecas y Guanajuato.</p>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card anim-swipeleft delay-2">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Brindaron un servicio superior rápido, cumplieron en tiempo y forma. Sus diseños son únicos. Sin pensarlo, volvería a contratar."</p>
+      <p class="review-author">Felipe Vélez</p>
+      <p class="review-loc">Jalisco</p>
+    </div>
+    <div class="review-card anim-swiperight delay-3">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Quedé impactado con la rapidez. Se tardaron 6 días en instalarla aquí en Aguascalientes, vinieron desde Guadalajara. Definitivamente será con ellos."</p>
+      <p class="review-author">Sergio Josué Beltrán</p>
+      <p class="review-loc">Aguascalientes</p>
+    </div>
+    <div class="review-card anim-swipeleft delay-4">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Excelente servicio. Recibí asesoría telefónica gratuita, me orientaron y el trato fue excepcional. La alberca quedó en tiempo y forma."</p>
+      <p class="review-author">Irving Solís</p>
+      <p class="review-loc">Guadalajara, Jalisco</p>
+    </div>
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section class="coverage-section theme-light" id="cobertura" style="padding: 6rem 4rem; position: relative; z-index: 1;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 4rem; align-items: center;">
+    
+    <!-- LEFT: Text Content -->
+    <div style="flex: 1; min-width: 300px; animation: fadeUp 1s ease both;">
+      <p class="section-number" style="font-size: 0.7rem; letter-spacing: 4px; color: #0077b6; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
+        05 — COBERTURA <span style="height: 1px; width: 40px; background: #0077b6;"></span>
+      </p>
+      <h2 class="section-title anim-swipeleft delay-1" style="font-family: var(--font-sans); font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 800; letter-spacing: -1px; line-height: 1.1; margin-bottom: 2rem; color: #0a2540;">
+        Descubre la cobertura<br>de nuestras <span class="grad-text" style="font-family: var(--font-serif); font-style: italic;">sucursales</span> en México
+      </h2>
+      <p style="color: #4a5568; line-height: 1.8; font-size: 1.1rem; margin-bottom: 2rem;">
+        En Xpools, ofrecemos servicios de instalación de piscinas en varios estados de México, a través de nuestras dos sucursales: <strong>Xpools Jalisco</strong> y <strong>Xpools Querétaro</strong>. Utiliza este mapa interactivo para conocer la cobertura de cada una de nuestras sucursales y encuentra la más cercana a ti.
+      </p>
+      <div style="display: flex; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff4757;"></div>
+          <span style="font-size: 0.9rem; color: #0a2540; font-weight: 600;">Jalisco</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff4757;"></div>
+          <span style="font-size: 0.9rem; color: #0a2540; font-weight: 600;">Querétaro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Motion Graphic Map -->
+    <div style="flex: 1; min-width: 300px; position: relative; background: #f4f8fc; border-radius: 24px; padding: 3rem; display: flex; justify-content: center; align-items: center; border: 1px solid rgba(0,119,182,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.05); animation: fadeUp 1s 0.2s ease both;">
+      
+      <!-- Interactive SVG Map Container -->
+      <div class="map-graphic-container" style="position: relative; width: 100%; max-width: 500px; color: #cce3f0;">
+        
+
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="100%" height="100%" viewBox="0 0 1024.000000 1024.000000"
+ preserveAspectRatio="xMidYMid meet">
+<metadata>
+Created by potrace 1.10, written by Peter Selinger 2001-2011
+</metadata>
+<g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
+fill="currentColor" class="map-vector" stroke="none">
+<path d="M0 8673 c0 -26 71 -206 93 -234 26 -33 26 -59 0 -59 -11 0 -13 -6 -8
+-22 4 -13 9 -41 12 -63 3 -22 11 -47 18 -55 24 -27 55 -111 55 -149 0 -27 10
+-50 41 -91 29 -39 39 -60 34 -74 -4 -12 -9 -43 -12 -70 -5 -45 -5 -48 15 -42
+31 10 40 -17 46 -132 6 -115 21 -154 67 -178 17 -8 50 -33 73 -54 22 -20 51
+-40 63 -44 21 -7 29 -17 97 -124 19 -29 46 -64 60 -77 14 -13 26 -31 26 -39 0
+-8 21 -40 46 -71 43 -52 46 -59 40 -98 -4 -23 -7 -68 -7 -99 0 -32 -5 -58 -10
+-58 -5 0 -9 7 -9 15 0 8 -7 15 -15 15 -8 0 -15 -8 -15 -19 0 -10 -7 -24 -15
+-31 -18 -15 -3 -50 21 -50 8 0 18 -10 23 -22 11 -30 4 -36 -14 -12 -15 19 -15
+19 -9 -1 4 -11 14 -28 22 -38 8 -9 12 -20 9 -24 -10 -10 -47 28 -47 48 0 10
+-9 21 -20 24 -11 3 -20 15 -20 26 0 22 -18 24 -54 8 -19 -9 -29 -9 -40 0 -15
+13 -136 44 -143 38 -8 -9 29 -78 45 -84 9 -4 29 -18 43 -32 14 -14 37 -34 52
+-43 19 -13 27 -29 32 -66 5 -40 12 -52 33 -63 15 -7 36 -13 47 -14 11 0 24
+-10 30 -22 5 -12 30 -31 56 -41 38 -16 52 -30 78 -76 l33 -56 28 20 c21 15 34
+18 47 12 10 -5 32 -15 48 -23 21 -11 33 -25 39 -52 5 -20 14 -37 20 -37 12 -1
+66 -45 66 -54 0 -14 78 -76 102 -81 49 -11 113 -162 111 -265 0 -60 -9 -136
+-17 -148 -3 -5 -12 -36 -21 -68 -13 -51 -13 -60 0 -80 9 -14 30 -26 50 -30 28
+-5 39 -13 50 -40 9 -21 23 -36 39 -40 14 -3 26 -12 26 -20 0 -7 14 -23 30 -36
+17 -12 30 -27 30 -33 0 -11 53 -55 65 -55 16 0 118 -102 145 -144 17 -26 37
+-49 45 -52 9 -4 22 -18 29 -32 8 -15 31 -32 57 -42 47 -19 51 -26 84 -165 13
+-55 24 -76 48 -96 30 -26 32 -26 64 -10 17 9 36 26 42 39 6 12 20 22 31 22 28
+0 60 18 60 33 0 7 8 29 19 49 l18 37 -28 43 c-16 23 -37 46 -49 50 -14 5 -20
+16 -20 36 0 15 -11 43 -25 62 -15 20 -25 47 -25 67 0 25 -4 33 -18 33 -9 0
+-33 20 -52 45 -35 45 -69 63 -90 50 -7 -4 -10 -16 -7 -26 3 -10 -1 -26 -9 -36
+-9 -12 -13 -14 -14 -4 0 9 -8 11 -25 7 -27 -7 -36 5 -67 84 -22 55 -23 94 -3
+110 8 7 15 23 15 37 0 24 -42 116 -66 143 -7 9 -16 43 -20 75 -6 49 -13 65
+-42 95 -50 51 -65 87 -67 160 -3 68 -21 178 -36 218 -5 13 -9 31 -9 41 0 10
+-12 28 -26 42 -15 13 -33 40 -41 59 -13 30 -16 32 -25 16 -7 -12 -7 -25 0 -40
+31 -67 33 -78 15 -74 -11 2 -22 21 -31 53 -8 28 -25 63 -39 79 -22 27 -23 30
+-8 52 15 23 14 24 -5 24 -25 0 -53 44 -81 127 -14 43 -30 71 -52 88 -93 75
+-92 74 -92 159 0 43 -4 80 -8 83 -5 3 -6 16 -2 30 9 38 -2 60 -34 66 -19 4
+-32 14 -36 29 -16 52 -51 118 -63 118 -7 0 -18 11 -24 25 -8 18 -17 24 -29 20
+-19 -6 -18 -9 -34 98 -3 19 -21 51 -40 73 -20 21 -38 49 -41 62 -4 12 -19 29
+-35 37 -15 8 -40 35 -54 59 -16 28 -35 46 -48 48 -16 2 -23 11 -25 30 -2 15
+-12 34 -22 41 -30 21 -44 94 -27 142 15 42 12 200 -3 220 -5 6 -11 48 -15 95
+-3 47 -8 100 -11 118 -4 23 -1 32 9 32 36 0 21 69 -29 135 -42 55 -26 60 31 9
+30 -27 81 -72 113 -100 97 -87 167 -109 190 -59 14 31 22 31 56 2 16 -14 29
+-38 33 -61 3 -21 11 -39 17 -41 105 -31 137 -62 129 -125 -9 -69 13 -189 43
+-233 24 -36 28 -55 34 -142 6 -88 11 -111 48 -194 23 -52 42 -99 42 -104 0 -5
+14 -25 30 -44 17 -19 36 -55 43 -80 11 -42 32 -68 83 -100 18 -11 18 -12 -3
+-12 -30 -1 -29 -18 1 -42 13 -10 29 -31 35 -47 13 -30 57 -62 88 -62 15 0 23
+-14 37 -60 10 -32 24 -64 31 -70 7 -6 15 -24 18 -40 5 -22 14 -31 34 -36 15
+-4 37 -15 49 -26 18 -16 23 -17 33 -4 17 20 75 -1 65 -24 -18 -38 -16 -91 5
+-125 16 -28 17 -35 6 -35 -23 0 -18 -28 8 -41 12 -7 43 -29 68 -50 33 -28 56
+-39 79 -39 20 0 38 -7 46 -17 18 -24 17 -33 -1 -33 -24 0 -18 -19 23 -72 l37
+-49 55 3 55 2 35 -67 c19 -37 43 -70 53 -73 24 -8 22 -43 -3 -41 -11 1 -22 7
+-24 14 -10 26 -25 12 -45 -42 -12 -31 -21 -80 -21 -109 0 -58 4 -63 93 -143
+36 -33 77 -44 77 -21 0 6 10 2 22 -9 36 -33 156 -112 161 -107 3 3 13 -9 24
+-26 10 -18 34 -40 55 -51 63 -32 84 -110 25 -95 -40 10 -39 -6 2 -54 32 -37
+41 -43 53 -32 12 10 18 10 27 -2 6 -7 25 -16 41 -20 17 -3 30 -10 30 -16 0
+-13 -16 -13 -41 1 -11 6 -25 9 -31 7 -17 -6 92 -88 116 -88 30 0 95 -71 139
+-151 20 -37 44 -69 52 -73 8 -3 15 -12 15 -21 0 -8 22 -44 49 -78 27 -35 53
+-75 56 -90 5 -18 14 -27 27 -27 30 0 83 -46 103 -90 15 -33 24 -41 54 -46 57
+-9 59 -11 71 -54 8 -31 8 -45 0 -55 -8 -10 -8 -29 -1 -71 6 -32 11 -71 11 -88
+0 -17 14 -58 30 -91 16 -33 30 -66 30 -73 0 -20 39 -72 54 -72 23 0 44 -33 36
+-55 -5 -11 -9 -37 -9 -58 -1 -46 -11 -67 -62 -128 -40 -48 -46 -59 -30 -59 14
+0 91 -53 91 -62 0 -12 -64 -38 -92 -38 -13 0 -39 -14 -58 -31 l-34 -32 32 -27
+c18 -14 32 -34 32 -43 0 -9 16 -42 35 -74 19 -32 35 -65 35 -74 0 -9 10 -19
+23 -23 12 -3 27 -16 33 -28 49 -97 68 -125 94 -139 16 -9 36 -22 44 -28 21
+-18 137 -61 147 -55 5 3 9 -6 9 -20 0 -30 13 -38 100 -61 73 -20 114 -52 130
+-101 6 -18 19 -36 28 -39 9 -3 28 -22 42 -42 13 -21 31 -45 40 -53 17 -17 115
+-50 148 -50 12 0 31 -11 44 -24 18 -18 37 -25 84 -29 33 -2 83 -15 112 -27 45
+-19 56 -21 81 -10 25 10 34 9 53 -4 12 -9 30 -16 39 -16 10 0 36 -22 59 -49
+22 -28 50 -53 60 -56 10 -3 22 -14 25 -25 3 -10 30 -30 61 -45 30 -15 62 -38
+71 -51 8 -13 22 -24 30 -24 8 0 27 -6 41 -13 70 -36 102 -48 167 -66 39 -10
+95 -28 125 -41 30 -12 65 -24 78 -27 12 -3 27 -14 33 -24 15 -29 50 -43 101
+-40 26 1 70 -5 97 -13 27 -8 51 -13 53 -10 3 2 22 -5 43 -16 22 -11 51 -20 65
+-20 17 0 39 -14 67 -44 31 -33 57 -49 100 -62 32 -10 66 -17 76 -16 11 1 32
+-7 47 -18 71 -50 150 -81 218 -84 37 -1 77 -8 89 -14 12 -7 33 -12 46 -12 14
+0 49 -12 78 -27 46 -24 64 -28 137 -27 72 1 91 5 144 33 33 17 68 31 77 31 40
+1 192 62 211 85 22 27 71 48 128 56 30 4 56 10 59 13 10 10 -9 26 -32 26 -36
+0 -38 16 -4 30 24 10 35 10 54 0 12 -7 28 -9 34 -6 14 9 51 -2 51 -15 0 -5
+-11 -7 -24 -3 -18 4 -27 1 -36 -15 -10 -20 -8 -21 30 -21 23 0 81 -16 131 -35
+104 -40 99 -39 99 -22 0 6 -34 25 -75 40 -46 17 -75 34 -75 43 0 19 -3 19 81
+-21 41 -19 84 -35 96 -35 19 0 22 -4 18 -22 -4 -20 4 -27 50 -50 36 -17 55
+-23 55 -14 0 6 -5 17 -12 24 -7 7 -8 12 -3 12 8 0 96 -81 241 -221 22 -22 56
+-44 76 -49 23 -7 44 -23 61 -48 25 -35 151 -162 162 -162 13 0 35 65 35 105 0
+26 8 60 17 76 17 29 17 30 -9 56 l-26 26 80 162 81 161 231 12 c127 7 234 16
+237 20 4 4 9 32 11 61 l3 55 -35 7 c-39 8 -70 41 -70 74 0 16 -15 32 -59 59
+-32 20 -63 36 -68 36 -6 0 -29 22 -52 50 -30 35 -51 51 -76 56 -61 11 -38 24
+45 24 l80 0 0 110 0 109 33 6 c49 8 423 35 497 35 106 0 140 9 140 35 0 29 26
+39 53 20 12 -8 27 -15 33 -15 6 0 36 54 67 120 35 73 62 120 71 120 30 0 65
+23 70 46 4 13 15 28 26 34 13 7 20 21 20 41 0 20 4 29 13 26 8 -2 12 -26 12
+-68 0 -60 1 -64 28 -73 20 -7 27 -16 27 -36 0 -15 8 -35 19 -44 18 -16 19 -16
+30 15 6 17 18 71 26 119 8 48 22 109 30 136 8 27 15 58 15 70 0 11 9 29 20 39
+11 10 20 22 20 27 0 13 -34 9 -57 -7 -16 -11 -22 -12 -26 -2 -6 17 11 47 26
+47 8 0 26 13 41 29 22 23 26 34 20 56 -7 26 -8 27 -20 10 -8 -11 -14 -13 -14
+-7 0 9 -9 8 -31 -4 l-32 -16 7 29 c4 15 18 44 32 64 17 25 24 49 24 82 0 27
+10 73 24 107 13 33 22 68 19 80 -4 14 0 20 10 20 23 0 77 49 77 71 0 10 14 40
+30 66 24 37 30 58 30 100 0 33 -6 60 -15 71 -9 9 -26 29 -38 44 -22 28 -64 42
+-67 23 -5 -30 -23 -35 -109 -28 -47 3 -103 12 -125 20 -45 15 -142 18 -151 3
+-3 -5 -22 -10 -42 -10 -45 0 -153 -41 -153 -57 0 -7 -8 -13 -17 -13 -10 0 -32
+-8 -48 -19 -19 -11 -61 -21 -114 -25 -106 -10 -174 -28 -269 -71 -140 -65
+-145 -76 -152 -305 -5 -165 -6 -177 -30 -215 -19 -31 -26 -58 -31 -123 l-5
+-83 -60 -60 c-32 -33 -87 -78 -121 -101 -41 -26 -63 -47 -63 -60 0 -16 5 -18
+35 -12 30 5 35 4 35 -14 0 -11 7 -25 15 -32 24 -20 18 -26 -20 -22 -28 3 -40
+-1 -65 -27 -22 -22 -41 -31 -64 -31 -17 0 -37 -5 -44 -12 -9 -9 -12 -8 -12 5
+0 10 -14 23 -32 31 -31 14 -32 14 -8 16 23 1 24 2 7 14 -25 20 -212 32 -232
+16 -8 -7 -12 -16 -9 -21 3 -5 -8 -9 -24 -9 -20 0 -45 -12 -71 -34 -43 -36 -96
+-51 -162 -45 -19 2 -47 -1 -64 -5 -16 -4 -47 -12 -67 -17 -27 -7 -38 -15 -38
+-29 0 -17 -35 -38 -46 -27 -3 3 -41 -6 -85 -19 -100 -31 -192 -31 -198 1 -2
+11 -12 26 -22 33 -11 7 -19 20 -19 28 0 22 -38 54 -64 54 -15 0 -32 11 -44 27
+-19 26 -25 28 -99 29 -43 0 -88 6 -101 13 -38 20 -47 7 -16 -23 29 -28 29 -28
+4 -21 -14 4 -42 9 -62 12 -21 3 -38 11 -38 18 0 6 -10 17 -22 23 -19 9 -20 11
+-5 11 10 1 27 -4 39 -10 43 -23 29 5 -30 61 -34 32 -62 64 -62 71 0 7 -16 30
+-36 50 -28 29 -42 56 -60 121 -19 65 -31 89 -57 113 -19 17 -37 43 -41 59 -4
+15 -15 30 -25 33 -12 3 -17 11 -14 23 5 20 -52 70 -80 70 -10 0 -17 6 -17 13
+0 7 -13 26 -29 41 -16 16 -39 50 -51 77 -11 27 -27 49 -35 49 -8 0 -12 6 -9
+14 3 8 -1 28 -10 43 -8 15 -22 52 -32 82 -9 30 -27 70 -40 89 -13 19 -29 53
+-35 76 -6 23 -15 49 -20 58 -5 10 -9 30 -9 45 -1 36 -36 84 -48 65 -7 -11 -12
+-10 -26 3 -22 22 -20 27 7 23 21 -3 22 0 22 77 0 44 4 86 9 94 6 9 4 18 -7 26
+-12 9 -14 18 -7 41 4 16 9 21 9 12 1 -23 21 -34 32 -17 11 18 12 66 0 73 -4 3
+-11 26 -14 51 -4 41 -1 68 18 152 4 18 1 23 -16 23 -18 0 -20 4 -14 23 4 12 5
+31 4 42 -2 11 -3 71 -2 133 0 61 -2 112 -6 112 -4 0 -12 -5 -19 -12 -9 -9 -12
+-2 -12 32 0 34 3 41 12 32 23 -23 29 -12 27 48 -1 33 3 65 9 73 9 10 8 18 -2
+33 -9 11 -12 30 -9 46 3 16 0 35 -8 44 -11 13 -10 17 5 26 14 8 15 13 5 24
+-16 20 -5 28 19 13 28 -18 56 -5 42 20 -5 11 -10 22 -10 25 0 9 23 7 40 -4 12
+-8 11 -14 -7 -47 -12 -21 -24 -55 -28 -75 -6 -31 -4 -38 9 -38 9 0 18 12 22
+28 3 15 16 50 29 77 12 28 34 83 49 122 24 64 26 77 16 108 -12 38 -42 48 -58
+19 -8 -14 -16 -12 -68 14 -44 22 -82 32 -150 39 -74 8 -107 18 -176 51 -47 23
+-106 46 -131 53 -25 6 -52 18 -60 28 -22 25 -127 236 -127 255 0 9 -7 32 -15
+52 -10 25 -12 42 -4 61 8 21 5 31 -16 59 -14 19 -32 34 -39 34 -16 0 -96 85
+-96 101 0 7 -24 38 -52 69 -75 82 -75 82 -93 145 -9 31 -23 59 -31 62 -8 3
+-36 49 -63 102 -26 53 -59 108 -72 122 -13 14 -32 40 -41 58 -10 18 -32 38
+-52 46 -19 8 -37 24 -41 35 -3 11 -14 20 -23 20 -10 0 -23 9 -29 19 -14 23
+-90 41 -172 41 -33 0 -71 7 -87 15 -39 20 -61 19 -74 -4 -6 -11 -25 -22 -48
+-26 -50 -8 -87 -55 -105 -132 -7 -33 -22 -69 -33 -80 -10 -11 -29 -32 -42 -47
+-17 -20 -29 -26 -45 -22 -12 3 -30 6 -39 6 -10 0 -30 14 -45 30 -14 17 -36 30
+-47 30 -12 0 -37 11 -57 24 -19 13 -53 31 -74 40 -21 9 -57 34 -81 56 -24 22
+-48 40 -53 40 -5 0 -26 28 -48 63 -30 47 -42 81 -52 137 -6 41 -19 88 -27 104
+-7 16 -14 35 -14 43 0 33 -34 74 -87 107 -51 31 -133 115 -133 136 0 5 -12 12
+-27 18 -16 5 -57 37 -93 71 -35 33 -67 61 -70 61 -3 0 -19 22 -35 50 -16 27
+-38 53 -50 56 -11 4 -27 12 -35 20 -11 9 -76 16 -220 23 -113 6 -235 13 -272
+16 l-68 5 0 -90 c0 -49 -4 -90 -8 -90 -8 0 -514 45 -827 73 l-140 13 -360 185
+c-198 101 -451 227 -562 278 -112 52 -203 99 -203 104 0 6 10 21 22 34 12 13
+20 25 17 27 -9 8 -759 18 -759 9z"/>
+</g>
+</svg>
+
+        
+        <!-- Jalisco PIN -->
+        <div class="map-pin" style="position: absolute; top: 61%; left: 45%;">
+          <div class="pin-pulse"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-tooltip">Xpools Jalisco</div>
+        </div>
+
+        <!-- Queretaro PIN -->
+        <div class="map-pin" style="position: absolute; top: 66%; left: 56%;">
+          <div class="pin-pulse"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-tooltip">Xpools Querétaro</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FORMULARIO COTIZACION -->
+<section id="formulario" style="padding: 8rem 4rem; background: linear-gradient(135deg, #0a2540 0%, #01324d 50%, #0a2540 100%); position: relative; overflow: hidden;">
+  
+  <!-- Background decoration -->
+  <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,119,182,0.15) 0%, transparent 70%); pointer-events: none;"></div>
+  <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(0,180,216,0.08) 0%, transparent 70%);"></div>
+  <div style="position: absolute; bottom: -100px; left: -100px; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(0,119,182,0.08) 0%, transparent 70%);"></div>
+  
+  <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
+    
+    <div style="text-align: center; margin-bottom: 4rem;">
+      <p class="section-eyebrow anim-fadein" style="justify-content: center; display: flex; color: #90e0ef; margin-bottom: 1.5rem;">06 — Cotización Gratuita</p>
+      <h2 class="anim-fadeup delay-1" style="font-family: var(--font-sans); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; color: white;">
+        Tu piscina ideal,<br><span style="font-family: var(--font-serif); font-style: italic; background: linear-gradient(135deg, #00b4d8, #90e0ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">sin compromiso</span>
+      </h2>
+      <p class="anim-fadeup delay-2" style="color: rgba(255,255,255,0.65); font-size: 1.05rem; font-weight: 300; max-width: 500px; margin: 0 auto; line-height: 1.7;">
+        Cuéntanos qué tienes en mente y te ayudamos a encontrar el modelo perfecto para tu espacio.
+      </p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="anim-scalein delay-2" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border: 1px solid rgba(255,255,255,0.1); border-radius: 28px; padding: 3.5rem; box-shadow: 0 30px 80px rgba(0,0,0,0.3);">
+      
+      <form id="cotizacion-form" onsubmit="sendToWhatsApp(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+          
+          <div class="form-group">
+            <label style="display: block; color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 500;">Tu nombre</label>
+            <input type="text" id="form-nombre" placeholder="Ej: Juan García" required
+              style="width: 100%; padding: 1rem 1.4rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; color: white; font-size: 1rem; font-family: var(--font-sans); outline: none; transition: border-color 0.3s, background 0.3s;"
+              onfocus="this.style.borderColor='rgba(0,180,216,0.6)'; this.style.background='rgba(0,180,216,0.08)'"
+              onblur="this.style.borderColor='rgba(255,255,255,0.12)'; this.style.background='rgba(255,255,255,0.07)'">
+          </div>
+
+          <div class="form-group">
+            <label style="display: block; color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 500;">Teléfono</label>
+            <input type="tel" id="form-telefono" placeholder="Ej: 33 1234 5678"
+              style="width: 100%; padding: 1rem 1.4rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; color: white; font-size: 1rem; font-family: var(--font-sans); outline: none; transition: border-color 0.3s, background 0.3s;"
+              onfocus="this.style.borderColor='rgba(0,180,216,0.6)'; this.style.background='rgba(0,180,216,0.08)'"
+              onblur="this.style.borderColor='rgba(255,255,255,0.12)'; this.style.background='rgba(255,255,255,0.07)'">
+          </div>
+
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 500;">Modelo de interés</label>
+          <select id="form-modelo"
+            style="width: 100%; padding: 1rem 1.4rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; color: white; font-size: 1rem; font-family: var(--font-sans); outline: none; transition: border-color 0.3s; cursor: pointer; appearance: none; -webkit-appearance: none;"
+            onfocus="this.style.borderColor='rgba(0,180,216,0.6)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+            <option value="" style="background: #0a2540;">Elige una línea de piscinas...</option>
+            <option value="Daytona Beach" style="background: #0a2540;">🏖️ Daytona Beach (D4 — D10)</option>
+            <option value="Key West" style="background: #0a2540;">🌊 Key West (K3 — K8)</option>
+            <option value="Miami Beach" style="background: #0a2540;">☀️ Miami Beach (M3 — M8)</option>
+            <option value="Santa Mónica" style="background: #0a2540;">🌅 Santa Mónica (S3 — S10)</option>
+            <option value="X-Line" style="background: #0a2540;">✨ X-Line Premium (X7 — X9)</option>
+            <option value="Kids" style="background: #0a2540;">🏊 Kids (K1)</option>
+            <option value="No sé cuál" style="background: #0a2540;">💬 Aún no lo sé, necesito orientación</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <label style="display: block; color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 500;">¿Cuánto espacio tienes? (opcional)</label>
+          <textarea id="form-espacio" rows="3" placeholder="Ej: Jardín de 8×6 metros, azotea, terraza..."
+            style="width: 100%; padding: 1rem 1.4rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; color: white; font-size: 1rem; font-family: var(--font-sans); outline: none; resize: vertical; transition: border-color 0.3s, background 0.3s;"
+            onfocus="this.style.borderColor='rgba(0,180,216,0.6)'; this.style.background='rgba(0,180,216,0.08)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'; this.style.background='rgba(255,255,255,0.07)'"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+          <button type="submit"
+            style="flex: 1; min-width: 200px; padding: 1.1rem 2.5rem; background: linear-gradient(135deg, #25d366, #128c7e); color: white; border: none; border-radius: 40px; font-weight: 700; font-size: 1rem; font-family: var(--font-sans); cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 0.7rem;"
+            onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 40px rgba(37,211,102,0.4)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.849L0 24l6.305-1.501A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-4.997-1.37l-.358-.213-3.742.891.953-3.641-.233-.373A9.778 9.778 0 012.182 12C2.182 6.586 6.586 2.182 12 2.182S21.818 6.586 21.818 12 17.414 21.818 12 21.818z"/></svg>
+            Enviar por WhatsApp
+          </button>
+          <p style="color: rgba(255,255,255,0.4); font-size: 0.8rem; flex: 1; min-width: 160px; line-height: 1.5;">
+            Te responderemos en menos de 24 horas con tu cotización personalizada.
+          </p>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CONTACTO -->
+<section class="location-section" id="contacto">
+  <div class="section-header">
+    <p class="section-eyebrow anim-fadein" style="justify-content: center; display: flex; margin-bottom: 1.5rem;">05 — Sucursales</p>
+    <div class="glow-divider anim-scalein delay-1" style="margin: 1rem auto;"></div>
+    <h2 class="section-title anim-fadeup delay-2">Ven a <span class="grad-text" style="font-family: var(--font-serif); font-style: italic;">Visitarnos</span></h2>
+  </div>
+
+  <div class="location-grid">
+    <div>
+      <div class="location-item anim-swipeleft" style="margin-bottom:1.5rem;">
+        <p class="location-city">Guadalajara</p>
+        <p class="location-addr">Carretera Chapala a Guadalajara #1127</p>
+        <div class="location-hours">
+          <strong>Lunes a Sábado</strong> · 09:00 am – 06:00 pm
+        </div>
+      </div>
+      <div class="location-item anim-swipeleft">
+        <p class="location-city">Zapopan</p>
+        <p class="location-addr">Anillo Perif. Nte. Manuel Gómez Morín #1646</p>
+        <div class="location-hours">
+          <strong>Lunes a Sábado</strong> · 09:00 am – 06:00 pm
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p style="color:var(--white-dim);font-weight:300;line-height:1.8;margin-bottom:2rem;">
+        Somos una empresa internacional con presencia en México, Estados Unidos, Brasil, el Caribe y Centroamérica. Nuestro compromiso es estar más cerca de ti.
+      </p>
+      <div class="contact-options">
+        <a href="https://wa.me/521234567890" class="contact-btn whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Contactar por WhatsApp
+        </a>
+        <a href="#modelos" class="contact-btn quote">
+          Solicitar presupuesto →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="" style="padding: 3rem 4rem; min-height: auto;">
+  <div class="footer-logo">X<span>Pools</span> México</div>
+  <ul class="footer-menu">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#modelos">Piscinas</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Sucursales</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 XPools México. Todos los derechos reservados.</p>
+</footer>
+
+
+<script>
+  // Datos del Slider
+  const slidesData = [
+    { title: "X-Line", desc: ["Terraza Betania - Tonalá, Jalisco", "Familia Lopez - Cajititlán, Jalisco", "Cabañas Haret - Mazamitla, Jalisco"] },
+    { title: "Key West", desc: ["Terraza Betania - Tonalá, Jalisco", "Familia Lopez - Cajititlán, Jalisco", "Cabañas Haret - Mazamitla, Jalisco"] },
+    { title: "Miami Beach", desc: ["Terraza Betania - Tonalá, Jalisco", "Familia Lopez - Cajititlán, Jalisco", "Cabañas Haret - Mazamitla, Jalisco"] },
+    { title: "Santa Monica", desc: ["Terraza Betania - Tonalá, Jalisco", "Familia Lopez - Cajititlán, Jalisco", "Cabañas Haret - Mazamitla, Jalisco"] },
+    { title: "Daytona Beach", desc: ["Terraza Betania - Tonalá, Jalisco", "Familia Lopez - Cajititlán, Jalisco", "Cabañas Haret - Mazamitla, Jalisco"] }
+  ];
+
+  let currentSlide = 0;
+  const bgs = document.querySelectorAll('.slider-bg');
+  const cards = document.querySelectorAll('.slider-card');
+  const track = document.getElementById('cards-track');
+  const titleEl = document.getElementById('title-el');
+  const descEl = document.getElementById('desc-el');
+  
+  const textEls = [document.getElementById('eyebrow-el'), titleEl, descEl, document.getElementById('btn-el')];
+
+  function updateSlider(newIndex) {
+    if(newIndex < 0) newIndex = slidesData.length - 1;
+    if(newIndex >= slidesData.length) newIndex = 0;
+    
+    currentSlide = newIndex;
+
+    // Cambiar fondos
+    bgs.forEach((bg, i) => {
+      bg.classList.toggle('active', i === currentSlide);
+    });
+
+    // Cambiar tarjetas y track
+    cards.forEach((card, i) => {
+      card.classList.toggle('active-card', i === currentSlide);
+    });
+    
+    // Mover el track suavemente
+    const cardWidth = cards[0].offsetWidth + 32; // width + gap
+    track.style.transition = 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+    track.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+
+    // Quitar clase de animación para resetear
+    textEls.forEach(el => {
+      el.classList.remove('text-transition');
+      void el.offsetWidth; // trigger reflow
+    });
+
+    // Actualizar contenido
+    const data = slidesData[currentSlide];
+    titleEl.textContent = data.title;
+    descEl.innerHTML = `<ul class="slider-list">` + 
+      data.desc.map(d => `<li><span style="color:var(--accent);">✓</span> ${d}</li>`).join('') +
+      `</ul>`;
+
+    // Añadir clase para animar de nuevo (Fade In con Blur)
+    textEls.forEach(el => el.classList.add('text-transition'));
+  }
+
+  function moveSlide(dir) {
+    updateSlider(currentSlide + dir);
+  }
+
+  function goToSlide(index) {
+    updateSlider(index);
+  }
+
+  // ===========================
+  // NAV SCROLL EFFECT
+  // ===========================
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  // ===========================
+  // WHATSAPP FORM HANDLER
+  // ===========================
+  function sendToWhatsApp(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('form-nombre').value || 'sin nombre';
+    const telefono = document.getElementById('form-telefono').value || 'no indicado';
+    const modelo = document.getElementById('form-modelo').value || 'no especificado';
+    const espacio = document.getElementById('form-espacio').value || 'no indicado';
+    
+    const msg = `Hola XPools México! 👋\n\n*Solicitud de cotización:*\n\n• *Nombre:* ${nombre}\n• *Teléfono:* ${telefono}\n• *Modelo de interés:* ${modelo}\n• *Espacio disponible:* ${espacio}\n\n¡Gracias por su tiempo! 🏊`;
+    
+    const url = `https://wa.me/523321568285?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  }
+
+  // ===========================
+  // NEW ANIMATION SYSTEM
+  // ===========================
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // --- OLD reveal-blur system (kept for backwards compat) ---
+    const legacyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+
+    const legacyElements = document.querySelectorAll('.feature-card, .process-step, .review-card, .location-item, .stat-card, .state-tag');
+    legacyElements.forEach((el, index) => {
+      el.classList.add('reveal-blur');
+      if(el.classList.contains('feature-card') || el.classList.contains('process-step') || el.classList.contains('review-card')) {
+        el.style.transitionDelay = `${(index % 5) * 0.12}s`;
+      }
+      legacyObserver.observe(el);
+    });
+
+    // --- NEW anim-* system ---
+    const animObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Don't unobserve - keeps animation active
+        }
+      });
+    }, { threshold: 0.07, rootMargin: "0px 0px -30px 0px" });
+
+    document.querySelectorAll('.anim-fadeup, .anim-fadein, .anim-swipeleft, .anim-swiperight, .anim-scalein').forEach(el => {
+      animObserver.observe(el);
+    });
+
+    // Ensure fullscreen-cards in the pool catalog are always visible
+    document.querySelectorAll('.fullscreen-card').forEach(card => {
+      card.style.opacity = '1';
+      card.style.filter = 'none';
+      card.style.transform = 'none';
+    });
+
+    // ===========================
+    // MOBILE NAV HAMBURGER
+    // ===========================
+    const hamburger = document.getElementById('hamburger-btn');
+    const mobileNav = document.getElementById('mobile-nav-overlay');
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        hamburger.innerHTML = isOpen
+          ? `<svg width="22" height="22" fill="none" stroke="#0077b6" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>`
+          : `<svg width="22" height="22" fill="none" stroke="#0077b6" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+      });
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+          hamburger.innerHTML = `<svg width="22" height="22" fill="none" stroke="#0077b6" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+        });
+      });
+    }
+  });
+</script>
+</body>
+
+</html>
